@@ -1,4 +1,4 @@
-name: "Terraform Plan"
+name: "Terraform Pipeline Plan"
 description: "Validates and Tests Terraform Configuration"
 inputs:
   inputs:
