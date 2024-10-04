@@ -1,7 +1,6 @@
 name: "Terraform Pipeline Plan"
 description: "Validates and Tests Terraform Configuration"
 inputs:
-  inputs:
   terraform_version:
     required: true
     type: string
@@ -31,9 +30,6 @@ inputs:
     default: "AutoFormat Commit"
     type: string
     required: false
-  AWS_ACCESS_KEY_ID:
-    required: false
-    type: string
   setup_terraform:
     type: boolean
     default: false
@@ -49,16 +45,6 @@ inputs:
   commit_sha:
     required: false
     type: string
-
-secrets:
-  TFE_TOKEN:
-    required: true
-  GH_TOKEN:
-    required: true
-  AWS_SECRET_ACCESS_KEY:
-    required: false
-  GOOGLE_CREDENTIALS:
-    required: false
 
 outputs:
   commit_sha:
@@ -78,14 +64,6 @@ outputs:
   commit_sha:
     description: "Commit SHA"
     value: ${{ jobs.terraform.outputs.commit_sha }}
-
-env:
-  GITHUB_OWNER: ${{ inputs.github_org }}
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-  AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-  TFE_TOKEN: ${{ secrets.TFE_TOKEN }}
   
 runs:
   using: "composite"
